@@ -1,0 +1,127 @@
+METOTLAR (FONKSİYONLAR);
+Belli bir işlemi yapması için tasarlanmış, alt programlara metot denir. Metotlar tek başlarına çalışamaz. Çalışmaları için herhangi bir yerden çağrılmaları gerekir. Bir metot çağrıldığı zaman kendisinden istenilen işlemleri yapar ve istenmişse kendisini çağıran yere değer döndürür. Bazen metotların geriye değer döndürmesi istenmeyebilir. Genelde profesyonel yazılım yaparken programı küçük tutmak gerekir anlaşılırlığı kolay olması için bu yüzden metotlar kullanılabilir. Yani metotlar ana programı sadeleştirir. 
+C# veya C++ da ilk çalışan program ana programdır. Yani main kısmıdır ilk çalışan. 
+Başlangıçta Application.Run(new Form1() ); kısımda ki birçok formla çalışıyorsak eğer ve ilk hangi form gelsin istersek o formun adını oraya yazarız.
+Form3 ün gelmesini istiyorsak örneğin Application.Run(new Form3() ) ; yazarık. Program.cs’nin içindedir bunlar.
+Eğer bir metot void ile tanımlanmışsa çağrıldığı yere herhangi bir değer döndürmez. Eğer bir metodun çağrıldığı yere değer döndürmesini istiyorsak bu metodu tanımlarken void kullanmayız ve değeri döndürmesi içinde return kullanırız. 
+PRİVATE-PUBLİC Erişim Belirteçleri…
+Private erişim belirleyicilerdendir. Bir metodu tanımlarken erişim belirleyiciler kullanmamız gerekir. Bunlardan bazıları private , public dir.
+Private erişim belirteci = Bir metoda sadece tanımlandığı sınıf içinde erişmek istiyorsak Private erişim belirtecini kullanırız.
+Eğer bir metoda tanımlandığı sınıf dışından da erişmek istiyorsak Public erişim belirtecini kullanırız.
+Eğer herhangi bir erişim belirteci kullanılmamışsa eğer PRİVATE kullanır program.
+***C# da bir metot şu şekilde tanımlanır.
+[erişim belirteçleri] <geri dönüş değeri> metot ismi (parametreler)
+{
+Metot gövdesi
+}
+/*Metot içinde metot tanımlanabilir*/
+ÖRNEK
+Private int topla(int x,int y)/*privateyi istersek yazmayabiliriz o zaten onu private olarak alır.*/
+{
+Return x+y;
+}
+Burada fonksiyonun ismi topladır ve parametreleri x ve y dir. Fonksiyonun görevi x+y nin sonucu çağrıldığı yere götürmesidir.
+/*Metot içinde başka bir metot tanımlanamaz fakat bir metot içinden başka bir metot çağrılabilir.*/
+ÖRNEK
+/*Metot içinde metot olamaz diye ilk metodun bittiği yere tanımlarız. Ve yukardan çağırırız onu.*/
+        private void button1_Click(object sender, EventArgs e)/*Bunun bittiği yere yazılır*/
+        {
+            int a, b;
+            a = Convert.ToInt32(textBox1.Text);
+            b = Convert.ToInt32(textBox2.Text);
+            label3.Text = topla(a, b).ToString();
+        }
+        int topla(int a, int b)
+        {
+            return a + b;
+        }
+YA DA VOİDLE YAPILIR !
+        private void button1_Click(object sender, EventArgs e)/*Bunun bittiği yere yazılır*/
+        {
+            int a, b;
+            a = Convert.ToInt32(textBox1.Text);
+            b = Convert.ToInt32(textBox2.Text);
+            topla(a, b);
+        }
+        void topla(int a, int b)
+        {
+           label3.Text = (a + b).toString();
+        }
+DİZİYİ METODA AKTARMA;
+        private void button1_Click(object sender, EventArgs e)/*Bunun bittiği yere yazılır*/
+        {
+Int [] dizi=new int [20];
+Topla(dizi);
+        }
+        void topla(int [] dizi)
+        {
+
+        }
+ÖRNEK2:Girilen x ve n için e^x fonksiyonunu seri açılımını kullanarak bulunuz.
+        private void button1_Click(object sender, EventArgs e)
+        {
+            double x;
+            int n;
+            x = Convert.ToDouble(textBox1.Text);
+            n = Convert.ToInt32(textBox2.Text);
+            double topla = 0;
+            for (int i = 0; i <= n; i++)
+                topla += Math.Pow(x, i) / fak(i);
+                label3.Text = topla.ToString();
+            }
+                int fak(int k)
+        {
+            int carp = 1;
+            for (int i = 1; i <= k; i++)
+                carp = carp * i;
+            return carp;
+        }
+ÖRNEK3:
+F(x)=0 denkleminin yaklaşık kökünü Newton yöntemi ile bulan bir program yazınız.(x^2-4x-10) denklemini çözünüz.
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int n = Convert.ToInt32(textBox2.Text);
+            double[] x = new double[n+1];
+            x[0] = Convert.ToInt32(textBox1.Text);
+            for (int i = 1; i <= n; i++)
+                x[i] = x[i - 1] - (f(x[i-1]) / ft(x[i-1]));
+            label3.Text = x[n].ToString();
+        }
+        double f(double x)
+        {
+            return Math.Pow(x,2)+4*x-10;
+        }
+        double ft(double x)
+        {
+            return 2 * x + 4;
+        }
+    }
+ÖRNEK4:f[a,b] fxdx integralini simpson yöntemiyle hesaplayan bir visual c++ programı yazınız.formul h/3(ciftleri 2yle tekleri 4le carparak topla)
+(e^(x^2))mesela.
+-1 den 1 e e üzeri – x kareyi bulunuz.
+        private void button1_Click(object sender, EventArgs e)
+        {
+            double a, b;
+            int n, i;
+            double h,sonuc=0;
+                a = Convert.ToInt32(textBox1.Text);
+                b = Convert.ToInt32(textBox2.Text);
+                n = Convert.ToInt32(textBox3.Text);
+                h = (b - a) / n;
+                double[] x = new double[n+1];
+                for (i = 0; i <= n; i++)
+                    x[i] = a + i * h;
+                double[] y = new double[n + 1];
+                for (i = 0; i <= n; i++)
+                    y[i] = f(x[i]);
+                    for (i = 1; i <= n; i += 2)
+                        sonuc += 4 * y[i];
+                    for (i = 0; i <= n; i += 2)
+                        sonuc += 2 * y[i];
+                    label3.Text = (h /3*(sonuc + y[0] + y[n])).ToString();
+                
+        }
+        double f(double x)
+        {
+            return Math.Exp(-Math.Pow(x,2));
+        }

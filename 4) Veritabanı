@@ -1,0 +1,73 @@
+VERİTABANI: İlgili kayıtların organize edilmiş bir koleksiyonudur. Veriler belli bir amaca yönelik düzenli kayıtlardır. Bilgilerimizin düzgün bir şekilde kaydedilmesine veritabanı denebilir. Veritabanları doğru bir şekilde yapılandırıldığında bilgilere ulaşmak hızlı ve güvenli olacaktır. Bir veritabanı oluşturan unsurlar şunlardır. 
+Veritabanı
+Tablolar
+Kolonlar
+Veri
+Sırasıynan oluşan unsurlardan oluşur veritabanı. Yapısal sorgulama dili olan SQL ilişkisel veri tabanlarında ki bilgileri sorgulamak için standart kullanımı olan bir dildir. Veritabanı sorgulamak tek bir dil var o da SQL dir. SQL standart bir dil olmasına karşılık çeşitli veri tabanlarında SQL kullanımları arasında farklılıklar vardır.
+.\sqlexpress=server name (nokta kısmı bilgisayar adı anlamına gelir)
+Sunucuya bağlanırken ya IP adı ya da kullanıcı adı bilinmelidir.
+Char:Öğrenci adı kolonuna 10 karakter gireceğimizi belirtiyoruz. Kolona gireceğimiz bilgiler kesin olarak 10 karakterse char’ı kullanabiliriz. Örneğin TC kimlik numarası.
+Vanchar:Karakter sayısı değişen ifadeler için kullanılır. Örneğin öğrenci adı soyadı. Girdiğimiz az karakterden kalan boşlukları kullanmadan geri yollar yani.
+Nchar: önlerine n gelince ulusal olur yani national. Mesela Türkçe karakterleri desteklemiyorsa önüne n koyarak onu national yapabiliriz. Belirliler için.
+Nvarchar: önlerine n gelince ulusal olur yani national. Mesela Türkçe karakterleri desteklemiyorsa önüne n koyarak onu national yapabiliriz. Belirsizler için için.
+Tinyint dediği küçük tamsayıdır anlamı. Kolonları oluşturup tipini belirtmeliyiz ve allow nulls kısmını doldururuz. Sonra ise tabloyu kaydederiz.
+İlişkisel veritabanı anahtar tekli bilgiyi temsil eder sonsuz işareti sonsuz işareti temsil eder. Yani tabloları birbirine bağlar.
+Bazı kolonları özel yapabiliriz yandaki oka tıklayıp set primary yaparsak onu özel yapar. Yani ayırt edici özellik gibi. Kolon özelliklerinden her kayıttan sonra pcye kendimiz kod verdirtebiliriz. İdenty specification’u yes yaparsak ve alttaki ayarları istediğimiz gibi ayarlayarak sıraynan artırabiliriz.
+Select top 1000 rows demek ilk bin satırı seç.
+Edit top 200 rows demek ilk 200 satırı düzenle.
+Esas bilgilerin saklı olduğu yerin kayıtlı dosya uzantısı mdf
+Log’un ise ldf dir.
+SQL de işlemler
+******Bilgi kaydetmek-Kayıt ekleme
+Oluşturduğumuz tablolara veri girişi yapmak için. İnsert sorgusu kullanılır.
+İnsert sorgusu şu şekildedir: insert into tablonun adı(kolon1,kolon2,….)values(değerler)
+***use görsel yazarsak aktif veritabanı görseldir demiş oluruk. Yani işlem yaparken bu veritabanını kullan demek.
+İnsert into tblOgrenci(oAdi,oTc,oNumarasi,osınıf,Oders1,Oders2,Oders3)values(‘Ali’,’1290542354967’,’1234’,2,’mat’,’prog’,’pc’)
+Bu sorguyu tamamen alıp C# da kullanacayık ve tamamen oraya yansıyacak.
+******Kayıt güncelleme
+Veriler de güncelleme yapmak için update sorgusu kullanılır.
+Update sorgusu şu şekildedir :
+Update tablo adı set kolon1=yeni deger1,kolon2=yeni deger2,….where koşul
+ÖRNEK
+update tblOgrenci set öadı='gönül',ösınıf=4  where ötc='00000000000'
+select * from tblOgrenci
+******Kayıt silme
+Verilerin silinmesi için delete  komutu kullanılır.
+Delete from tablo adı where koşul
+ÖRNEK
+delete tblOgrenci where (ötc='00000000000') (tc numarası 00000000000 olan kişiyi sil anlamına gelıyor.)
+SEÇME İŞLEMLERİ
+Tablolarda bulunan tüm bilgileri veya belli bir kritere uyan bilgileri getirmek için select komutu kullanılır.
+sorgu şu şekildedir;
+select * from tblOgrenci
+tabloda bulunan tüm kolonları seç  demektir.(* tum kolonları seç demektir aksi halde yıldız silinir ve listelenmesi istenilen kolonların adları yazılır.)
+eğer bir kritere bağlı olarak bilgileri seçmek istiyorsak sorguyu şu şekilde kullanılırız.
+select * from tblOgrenci where(koşul)
+yada select oAdi,oNumarası,oSinif from tblOgrenci
+Eğer o ya da bu diye bir seçenek ataycaksak or komutu kullanılır.
+Selectle kullanılabilecek bazı komutlar.
+TOP= üst kayıt sayısını belirtmek için kullanılır.
+ÖRNEK
+select  TOP  3 * from tblOgrenci
+order by
+gelen sorgularımızı sıralamak için kullanılır.küçükten büyüğe doğru sıralama yapmak istiyorsak asc,büyükten küçüğe sıralama yapmak içinde desc kullanılır.Herhangi birşey yazmazsak asc olarak algınlanır.
+ÖRNEK
+select from * tblOgrenci order by ösınıf asc ( küçükten büyüğe doğru sıralama )
+select from * tblOgrenci order by ösınıf desc ( büyükten küçüğe doğru sıralama  )
+distinct
+Kayıtları tekile indirmek için kullanılır.Tekrarlanan kayıtları teke indirir.
+ÖRNEK
+select distinct öadı from tblOgrenci (öğrenci adına göre tekile indirgeyip sorgulamak)
+Bir web sayfasından alışveriş yapılır mesela ordaki müşterilerin hangi illerden olduğunda kullanabiliriz mesela.
+like
+where ile birlikte kullanılır. Aramak istenilen kolonda bulunan veriler içerisinde geçen kayıtları getirmek için kullanılır.select * from tblOgrenci where öadı like '%a'
+ÖRNEK
+select * from tblOgrenci where öadı like '%a'  
+ismi a ile biten kayıtları listele 
+select * from tblOgrenci where öadı like 'a%'  
+ismi a ile başlayan kayıtları listele
+select * from tblOgrenci where öadı like '%a%'
+içinde a harfi olan isimleri listele
+(% tüm karakterler temsil eder, _ tek karakter temsil eder)
+select * from tblOgrenci where öadı like 'a_'
+2 karakterli isimlerde a ile baslayan isimleri listele 

@@ -1,0 +1,163 @@
+Diziler=Bellekte art arda gelen aynı türdeki nesnelere dizi denir.
+Bir dizinin elemanlarına aynı isimle erişilir. Aynı tür de birden fazla değişken kullanmak yerine bir dizi tanımlayıp tek bir değişkenle programı yazabilirik. Diyelim ki x,y,z,a,b,c gibi altı değişkenim varsa 6 tane tanım yapmak yerine bir dizi tanımlarık. 
+Visual C# da dizi şu şekilde tanımlanır:
+-	Tip [ ] dizi = new tip [ boyut] ;
+-	İnt [ ] x = new int [ 10 ];
+10 elemanlı int türde bir x dizisi tanımlamış olduk. Burada indis 0 dan başlar. Dolayısıyla bu dizinin elemanları x0,x1,…x9 dur. Bu diziyi şu şekilde de tanımlayabilirik.
+X=new int [10]; aynı şeydir yukarda ki tanımla. Burada ki new operatörü ile tanımlanan diziye varsayılan değerler atanır. Örneğin tam sayı türler için bu 0 dır. String türdekiler için null dur değeri.
+***Null=  değeri yok anlamına gelir.
+Bu şekilde tanımlanan bir x dizisinin elemanlarına şu şekilde erişilir.
+Örnek :
+int[] x = new int[10];
+            for(int i=0;i<=9;i++)	
+            listBox1.Items.Add (x[i]);
+2. yol=
+  int[] x = new int[10];
+            foreach (int a in x)
+            listBox1.Items.Add (a);
+Ekrana 10 tane 0 yazar iki tür de.
+DİZİNİN BOYUTUNU KENDİMİZ BELİRLEME:
+                   int n;
+            n = Convert.ToInt32(textBox1.Text);
+            int[] x = new int[n];
+*/BU C++ da yoktur C# a özgü birşeydir.
+Bir dizinin elemanlarını başlangıçta biliyorsak diziyi şu şekildede tanımlayabilirik.
+Int [] y={ 1,2,3,4};
+Float[]x1={1,2,3};
+. olsaydı bunları double algılardı ama 3.0 olsaydı double algılardı.
+Float[]x1={1f,2.2f,3.8f};
+String [] x2={“ ”};” “ çift tırnak içinde atanır.
+String [] x2={“gönül”,”damla”,”ahmet”};
+İndisi sıfırdan başlatmak için n sıfırdan başlatmak istemiyorsak n+1
+
+İNPUT BOX ANLATIMI :
+Projenin ismine solution explorerden sağ tuşla tıklaycayık ve add referenceyi seçeceyik. Miscrosoft.visual basic I bulacayık ve OK tuşuna bakacayık. Sonra kullanıma açılacak inputbox.
+Basit örnek: 
+Int a=convert.toint32(Microsoft.visualbasic.interaction.inputbox());
+Microsoft visual basic isim alanı içindeki interaction sınıfı içindeki bir metoddur.
+
+Şimdi input box tanımı: int a=convert.toint32(Microsoft.visualbasic.interaction.inputbox(“sayi giriniz”,”giriş”,”(buraya yazılan değer varsayılan değer olur program açılınca direk o gelir ekrana)”,10(x pozisyonu),10(y pozisyonu)));
+ÖRNEK:
+Girilen n tane sayıyı bir diziye aktarıp bu elemanlar içinde çift olanları listbox da görüntüleyen programı yazınız.
+int n,i;
+            n = Convert.ToInt32(textBox1.Text);
+            int []x=new int [n];
+            for (i = 0; i < n; i++)
+            {
+                x[i] = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("dizinin"+(i+1).ToString()+"elemanını giriniz=","N tane sayı girişi","",100,100));
+                if(x[i]%2==0)
+                listBox1.Items.Add(x[i]);
+            }
+Input box yerine text boxla yapmak istersek eğer=
+Textbox1.text=” 12 “ ; sayi girer girmez eğer çiftse onun kadar bu değeri yazar ekrana.
+X[I]=convert.toint32(textbox1.text);BU şekilde olmaz o an için içinde ne varsa textbox1 in onu alır ve geçer bizi beklemez.
+***************************************************************************
+MATRİSLER
+//tip[,]dizi=new tip[boyut1,boyut2];
+Int[,]a =new int [2,4];
+Bu şekilde tanımlanan bir dizinin elemanlarına şu şekilde erişilir.
+A[i,j]=12; şeklinde erişilir.
+A[1,2]=12; indisler sıfırdan başladığı için a[1,2] dersek 2. Satır 3. Sütun olur.
+Örneğin indis olarak 0ı kullanmak istemiyorsak. 2*4lük bir matrisi bir fazlasıyla yani 3*5 şeklinde tanımlarık.
+İki boyutlu bir dizinin elemanlarını biliyorsak diziyi şu şekilde tanımlayabilirik:
+Int [,]a={{1,45},{67,9},{6,9}};
+
+MATRİSLER ÖRNEKLERİ:
+M*n lik iki matrisi toplayan bir visual basic c# programı yazınız.
+int m, n,i,j;
+            if(textBox1.Text!="" || textBox2.Text!="")
+            {
+            m = Convert.ToInt32(textBox1.Text);/*bu kısımda istenen istenen işlem*/
+            n = Convert.ToInt32(textBox2.Text); 
+                int[,] x = new int[m+1,n+1];
+                int[,] y = new int[m+1,n+1];
+                int[,] z = new int[m+1,n+1];
+                for (i = 1; i <= n; i++)
+{
+                    for (j = 1; j <= m; j++)
+                    {
+                        x[i, j] = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("a[" + i + "," + j + "] elemanını giriniz:", "matrisin elemanları", "", 1000, 100));
+                        y[i, j] = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("a[" + i + "," + j + "] elemanını giriniz:", "matrisin elemanları", "", 1000, 100));
+                        z[i, j] = x[i, j] + y[i, j];
+                    }
+}
+                string x1="", y1="", z1="";/*bu kısım listboxlara yazdırma*/
+                for (i = 1; i <= n; i++)
+                {
+                    for (j = 1; j <= m; j++)
+                    {
+                        x1 = x1 + x[i, j]+”    “;
+                        y1 = y1 + y[i, j]+”    “;
+                        z1 = z1 + z[i, j]+”    “;
+                    }
+                    listBox1.Items.Add(x1);
+                    listBox2.Items.Add(y1);
+                    listBox3.Items.Add(z1);
+x1 = ""; y1 = ""; z1 = "";/*eğer burayı sıfırlamazsak yani 2. Satıra geçerken sorun yaşar*/
+******/*   n*m lik bir matrisin transpozunu bulan bir visual c# programı yazınız.
+int m, n, i, j;
+                if (textBox1.Text != "" || textBox2.Text != "")
+                {
+                    m = Convert.ToInt32(textBox1.Text);/*bu kısımda istenen istenen işlem*/
+                    n = Convert.ToInt32(textBox2.Text);
+                    int[,] x = new int[m + 1, n + 1];
+                    int[,] y = new int[m + 1, n + 1];
+                    for (i = 1; i <= n; i++)
+                        for (j = 1; j <= m; j++)
+                        {
+                            x[i, j] = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("a[" + i + "," + j + "] elemanını giriniz:", "matrisin elemanları", "", 1000, 100));
+                           /* y[i, j] = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("a[" + i + "," + j + "] elemanını giriniz:", "matrisin elemanları", "", 1000, 100));*/
+                            y[j, i] = x[i, j];
+                        }
+                    string x1 = "", y1 = "";/*bu kısım listboxlara yazdırma*/
+                    for (i = 1; i <= n; i++)
+                    {
+                        for (j = 1; j <= m; j++)
+                        {
+                            x1 = x1 + x[i, j] + "    ";
+                            y1 = y1 + y[i, j] + "    ";
+                        }
+                        listBox1.Items.Add(x1);
+                        listBox2.Items.Add(y1);
+                        x1 = ""; y1 = "";	
+                    }
+                }
+
+/*   n*nlik bir matrisin normal köşegen ve ters köşegen üzerindeki elemanlarının toplamını bulup görüntüleyen bir visual c# programı yazınız.                    
+
+
+listBox1.Items.Clear();
+            listBox1.Items.Clear();
+            int  n, i, j,topla=0;
+            if (textBox1.Text != "")
+            {
+                n = Convert.ToInt32(textBox1.Text);/*bu kısımda istenen istenen işlem*/
+                int[,] x = new int[n + 1, n + 1];
+                for (i = 1; i <= n; i++)
+                    for (j = 1; j <= n; j++)
+                    {
+                        x[i, j] = Convert.ToInt32(Microsoft.VisualBasic.Interaction.InputBox("a[" + i + "," + j + "] elemanını giriniz:", "matrisin elemanları", "", 1000, 100));
+
+                    }
+                 for (i = 1; i <= n; i++)
+                     for (j = 1; j <= n; j++)
+                     {
+                         {
+                             if (i == j || (i + j) == n + 1)
+                                 topla += x[i, j];
+
+                         }
+                     }
+                string x1 = "", y1 = "", z1 = "";/*bu kısım listboxlara yazdırma*/
+                for (i = 1; i <= n; i++)
+                {
+                    for (j = 1; j <= n; j++)
+                    {
+                        x1 = x1 + x[i, j] + "    ";
+                    }
+                    listBox1.Items.Add(x1);
+                    x1 = "";
+                }
+                listBox2.Items.Add(topla);
+            }
+

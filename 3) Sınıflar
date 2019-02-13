@@ -1,0 +1,46 @@
+Sınıflar nesne tabanlı programlama dillerinin en önemli kısmıdır. Sınıflar ile bir veri modeli oluşturulur.örneğin; günlük hayatta memurlar diye bir sınıf oluşturabiliriz. Bu sınıfın elemanları memurun özellikleri olur memurun adı soyadı sicili yaptığı iş gibi gibi olabiliir. Sınflar class anahtar sözcüğü kullanılarak tanımlanır. Sınıfların elemanları özellikler ve metodlardan oluşur. (Özellik=değişken) class larda isim alanları içindetanımlanır. Bir class ın elemanlarına erişebilmek için bu sınıf türünde bir nesne tanımlarız. Ve bu nesneyi kullanarak  ilgili sınıfın özelliklerini ve metodlarını çağırabiliriz. Bir sınıfın metodları static olarak tanımlanmışsa bu sınıf türünde nesne tanımlamaya gerek olmaksızın bu metodları doğrudan çağırabiliriz. 
+Bir class 
+   class isim
+    { 
+        // sınıfın gövdesi
+    }
+İle tanımlanır.
+Örnek;
+Deneme sınıfı iiçindeki f metodunu farklı bir sınıftan şu şekilde çağırabiliriz.
+ 
+Deneme sınıf türünde bir d nesnesi oluşturduk. Ve bu d nesnesini kullanarak deneme sınıfının  f metodunu çağırdık. Burada f metodu public olmasaydı farklı bir sınıftan bu metodu çağıramazdık. 
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            deneme d = new deneme(); //deneme sınıf türünde bir d nesnesi oluşturdu.
+            label1.Text=d.f(5).ToString();
+
+        }
+
+    }
+    class deneme
+    {
+        int f(int x)
+        {
+            return x * x;
+        }
+    }
+
+Bu şekildetanımlanan f fonksiyonu private olarak algılanır dolayısıyla sadece tanımlandığı sınıf içinde geçerlidir farklı bir sınıflardan f metodu çağırılamaz.
+
+private void button1_Click(object sender, EventArgs e)
+        {
+           // deneme d = new deneme(); //deneme sınıf türünde bir d nesnesi oluşturdu.
+            label1.Text = deneme.f(54).ToString();
+        }
+
+    }
+    class deneme
+    {
+       public static int f(int x)
+        {
+            return x * x;
+        }
+    }
+
+F fonksiyonu staticolarak tanımlandığında bu metoda erişebilmek için nesne tanımlamaya gerek yoktur doğrudan “sınıf adı.metod” şeklinde erişiriz.

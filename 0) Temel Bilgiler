@@ -1,0 +1,179 @@
+BUTONLAR  
+Textbox=Dışarıdan sayı girişi için kullanılır
+Button=Tıklandığında programın istenilen şekilde çalışması için kullanılır.
+CheckBox=İşaretleyerek seçmk için kullanılır.
+CheckListBox=Checkboxları bir araya panel içinde toplamak için
+Listbox=Nesneleri ve elemanları listelemek için
+RadioButton=Seçerek İşlem yapmak için
+GroupBox=RadioButtonları bir panelde toplamak için
+Label=Herhangi bir yazı yazdırmak için
+LinkLabel=Yazıyı internet sitesi gibi link şeklinde göstermek için(www.esogu.com.tr)
+MonthCalendar=Takvimi gösterir
+Form=Programı çalıştırınca karşımıza çıkan ekran
+DataGridView=SQL benzeri satır sütun açar(Excel gibi)
+
+                                                 VARSAYILAN OLAYLAR
+Textbox=TextChanged
+Button=Click,DoubleClick
+CheckBox=CheckChanged
+RadioButton=CheckedChanged
+CheckListBox=SelectedIndexChanged
+Listbox=SelectedIndexChanged
+GroupBox=Enter
+Label=Click
+LinkLabel=LinkClicked
+MonthCalendar=DateChanged
+FORM=Load
+DataGridView=CellContentClick
+                                  AYRICA
+Font=Yazı tipi,boyutu belirlemek için kullanılır
+ForeColor=Yazı rengi
+BackColor=Zemin Rengi
+Enabled=Görünür.      (Button1.Enable=true;)
+Visible=Görünmez.   (Button1.Visible=off;)
+________________________________________________________________________________      
+         DEĞER TİPLERİ ve REFERANS TÜRLERİ
+Değer Tipleri=Değer döndürür.RAM'in stack bölgesinde saklanır
+Örnek=int,float,double,char,decimal değer tipidir.
+Referans Türleri=Adres döndürür.RAM'in heap bölgesinde saklanır.(0x280C)bu tip şeyler bellekteki adres demektir.
+Örnek:Object ve Stringtir
+Object:Bütün veri türlerinin türediği yerdir.boxing ile çalışır
+String:Karakterlerden oluşan dizidir. 
+________________________________________________________________________________      
+               TÜR DÖNÜŞÜMLERİ
+Bilinçsiz Tür Dönüşümü:Küçükten büyüğe dönüştürülür
+Örnek=int'i double'a dönüştürme olayı
+int a=24;
+double c;
+c=a;
+Bilinçli Tür Dönüşümü:Büyük-Küçük farkı gözetmeksizin dönüştürülür.() sembolü kullanılır.Checkek ve Unchecked kullanılır.
+Örnek= int b=10;
+       byte i=(int) b;
+       Label1.Text=i.Tostring();
+
+Checked=Veri kaybı olup olmadığını kontrol eder
+Unchecked=Veri kaybının olup olmadığını kontrol eder eğer kayıp varsa o işlemi atlayarak devam eder.
+________________________________________________________________________________      
+               Bilinmesi Gerekenler
+*console application siyah renkli ekran,form application ise görsel ekran
+*değer tipleri stack,referans türleri heap'te saklanır.
+*küçük değer büyük değere taşınır ama büyük değer küçük değere sadece bilinçli şekilde taşınır.(Bardaktaki su sürahiye dökülürse taşma olmaz fakat sürahideki su bardağa dökülürse taşar burada bardak int,sürahi double)
+________________________________________________________________________________      
+               Değer Tipleri ve Boyutları
+byte=8bit
+short=16bit
+char=16bit
+int=32bit
+float=32bit
+double=64bit
+long=64bit
+decimal=128bit
+bool=mantıksal veri türüdür. true yada false olabilir.
+bit   <  byte  <  char  <  int  <  double  <  decimal
+                   short <float < long
+________________________________________________________________________________      
+               MANTIKSAL OPERATÖRLER
+                (BOOLEAN İŞLEÇLERİ)
+Mantıksal olarak ifadeleri birbirlerine bağlar.
+&&   -->ve            !=  -->eşit değil
+||   -->veya          >=  -->büyük eşit
+==   -->eşit          <=  -->küçük eşit
+
+İşleç önceliği: Parantez>Değil>Karşılaştırma>Eşitlik>Eşitsizlik>VE>VEYA
+________________________________________________________________________________      
+               DİZİ TANIMLAMA
+int[] a = new int[10];   ---->genel olarak böyle tanımlanır
+____________________________________________________________
+int[] a;                 ---->bu kullanımda doğrudur.
+a=new int[10];
+____________________________________________________________
+Eğer bir dizinin başlangıç değeri yoksa  referans ise null
+                                         nümerik ise  0
+                                         boolean ise false atanır
+____________________________________________________________
+Örnek:Herhangi bir dizi tanımlayalım.
+            int[] a = new int[10];
+            for (int i = 0; i <= 9; i++)
+            {
+                a[3] = 4;
+                listBox1.Items.Add(a[i]);
+            }
+________________________________________________________________________________      
+               MATRİS TANIMLAMA
+int[,] a = new int[10,10];   ---->genel olarak böyle tanımlanır
+____________________________________________________________
+int[,] a;                 ---->bu kullanımda doğrudur.
+a=new int[10,10];
+____________________________________________________________
+Örnek:Herhangi bir matris tanımlayalım.
+            int [,]a=new int[10,10];
+            for (int i = 0; i <= 9; i++)
+            {
+                for (int j = 0; j <= 9; j++)
+                {
+                    a[1, 1] = 3;
+                    listBox1.Items.Add(a[i, j]);
+                }
+            }
+________________________________________________________________________________      
+              Foreach Döngüsü Kullanımı
+Bir dizinin başlangıç ve bitiş değerleri belli değilse foreach döngüsü kullanılır.
+int[] a = new int[10];
+     foreach (int b in a)
+       {
+        listBox1.Items.Add(a[b]);
+       }
+________________________________________________________________________________      
+              Bilinmesi Gerekenler
+*void ile geriye dönüş değeri yoktur,return ile vardır
+*radiobuttonları birbirlerine bağlamak için GroupBox kullanılır
+*float ile değer atanırken sayının sonuna f yada F konulur(float a=3,14F)
+*decimal ile değer değer atanırken sayının sonuna m yada M konulur(decimal a=8,9M)
+*ascii de daha az karakter olduğundan unicode kullanılır
+*değer tipleri değer saklar(değerler stack'ta saklanır)(int,float,double)
+*referans tipleri adres saklar(adresler heap'te saklanır)(0x08ac2)(string)
+*Bilinçsiz tür dönüşümü sadece küçükten büyüğe yapılır(int'ten double'a)
+*Bilinçli tür dönüşümünde büyük küçük ayrımı yoktur.()işareti bilinçli yapıldığı anlamına gelir.
+*checked bilinçli tür dönüşümü yaparken kontrol eder ve bizi uyarır
+*unchecked bilinçli tür dönüşümü yaparken kontrol eder fakat bizi uyarma gereğinde bulunmaz.
+*yapısında () bulunan herşey istisnasız olarak metod belirtir.
+*Sadece MessageBox() bu durumun dışındadır.Metod değil sınıftır.
+*MessageBox() sınıf dışında fonksiyon da belirtir.Aşırı yüklenmiş fonksiyondur.
+*BreakPoint işaretlenen satıra kadar programı çalıştırır.F9 tuşu ile çalışır
+*void ile değer döndürülmez fakat return ile değer döndürülür
+*bir metoda tanımlandığı sınıf içinden erişeceksek private kullanırız
+*bir metoda tanımlandığı sınıf dışından erişeceksek public kullanırız
+*C#'da isim alanları içine sınıflar,sınıfların içine de metodlar tanımlanır(namespace-class-metod)
+*IndexOf cümle içinde istenilen kelimenin geçtiği yeri verir
+*PadLeft sola ekleme yaparken Padright sağa ekleme yapar
+*Substring string ifade içinden istenilen kadar ifade almak için kullanılır.
+*Substring ile kayan yazı oluşturulabilir.
+*Join araya kelime eklemek için kullanılır.
+*ToUpper() kelimede geçen harfleri büyük yazar
+*ToLower() kelimede geçen harfleri küçük yazar
+*Replace() istenilen bir kelimeyi başka kelime ile değiştirir.
+*Trim() baştaki yada sondaki boşlukları silmek için kullanılır.
+*TrimStart() baştaki boşluğu silerken TrimEnd() sondaki boşluğu siler
+*StartWith() ifadenin hangi ifadeyle başladığını EndsWith() ise hangi ifade ile bittiğini gösterir
+*Lenght() ifadenin karakter sayısını verir
+*Remove() istenilen indisten itibaren istenilen karakter sayısı kadar silme işlemi yapar
+*Split() cümleyi istenilen şekilde parçalamayı sağlar
+*Contains() ifadenin string olup olmadığını kontrol eder
+*Insert() araya kelime eklemek için kullanılır
+*Parse metod değildir.string ifadeyi tamsayıya çevirir.
+*\t TAB kadar boşluk bırakırken \n alt satıra geçmeyi sağlar
+*Escape karakterler \t,\n'dir.(Escape karakter olarak algılanmaması için başına @ yada \\ konulur.)
+*new anahtar sözüğü ile sayısal değişkenlere -->0
+                        string değişkenlere  -->null
+                        mantıksal(boolean)değişkenlere -->false atanır
+*başında this olan sınıfa olmayan metoda aittir.
+*yıkıcı metodlar tektir.birden fazla olamaz
+*yıkıcı metodlar program kapanırken çalışır
+*namespaceler sınıflardan oluşan kütüphanelerdir.
+*namespaceler .NET FREAMWORK içinde bulunur.
+* int a = 45, b;
+      b = ++a; // b=46 yazar
+      b = a++; // b=45 yazar fakat hafızasında 46 tutar
+      b = a % 2; // modu bulur
+      b = a % 2 == 0; //çift olduğunu kontrol eder
+      b = a % 2 == 1; // tek olduğunu kontrol eder

@@ -1,0 +1,104 @@
+Tarih ve Zaman işlemleri
+C# da tarih ve zaman işlemleri için sistem isim alanında bulunan “ datetime” ve “Timespan” yapıları kullanılır. Datetime yapısı gün,ay,yıl,saat,dakika ve saniye gibi bilgiler tutar. Timespan ise iki tarih arasında ki farkı temsil eder. Datetime yapısının tuttuğu en küçük ve en büyük tarihi şu şekilde görebiliriz. 
+private void button1_Click(object sender, EventArgs e)
+        {
+            label1.Text = DateTime.MinValue.ToString();
+            label2.Text = DateTime.MaxValue.ToString();
+
+        }
+Datetime yapısının en fazla kullanılan özellikleri “now” ve “ ToDay” dir.
+   private void button1_Click(object sender, EventArgs e)
+        {
+            label1.Text = DateTime.Today.ToString();
+            label2.Text = DateTime.Now.ToString();
+
+        }
+Today sadece bugünün tarihini gösterir. Now ise saniye dakika saat herşeyi gösterir.
+Aynı işlemleri datetime nesnesi oluşturarak da yapabiliriz. 
+Datetime dt=new Datetime(); 
+Dt=Datetime.Today(); ***Datetime class’ından bir dt nesnesi oluşturduk o nesnenin tutacağı değer olarak da bugünün tarihi atadık.
+Datetime sınıfı ile kullanabileceğimiz şu özellikler vardır.
+Date= Tarih…Datetime nesnesine ilişkin saat dışında ki bilgiyi tutar.(datetime)
+Month=Datetime nesnesinin ay bilgisini tutar.(int)
+Day=Datetime nesnesinin gün bilgisini tutar.(int)
+Year= Datetime nesnesinin yıl bilgisini tutar.(int)
+DayOfWeek=Datetime nesnesinin haftanın kaçıncı günü olduğunu bulur.(int)
+DayOfYear= Datetime nesnesinin yılın kaçıncı günü olduğunu bulur.(int)
+TimeOfDay= Datetime nesnesinin günün, vaktinin kaç olduğunu bulur.(int)(00.00.00)dan itibaren ne kadar zaman geçtiğini bulur.
+Hour=Datetime nesnesinin saat bilgisini tutar.(int)
+Minute=Datetime nesnesinin dakika bilgisini tutar.(int)
+Second=Datetime nesnesinin saniye bilgisini tutar.(int)
+Örnek…Bir kullanıcının doğum tarihinden bugüne kadar geçen gün sayısını bulan bir C# programı yapınız.(Timespan kullanarak yap evde ise kullanmadan yap)
+  private void button1_Click(object sender, EventArgs e)
+        {
+            int y,a,g;
+            y = Convert.ToInt32(textBox1.Text);
+            a = Convert.ToInt32(textBox2.Text);
+            g = Convert.ToInt32(textBox3.Text);
+            DateTime bugun = new DateTime();
+            bugun = DateTime.Today;
+            DateTime dt = new DateTime(y,a,g);
+            TimeSpan fark = bugun-dt;
+            label4.Text = "Doğduğunuz Gün:" + dt.DayOfWeek.ToString();
+            label5.Text = "Yaşadığınız gün:" + fark.Days.ToString();
+        }
+
+Örnek…Girilen sayıya göre kaç girildiyse hangi güne geleceğini bulur…
+  private void button1_Click(object sender, EventArgs e)
+        {
+            int gunSayisi;
+            gunSayisi = Convert.ToInt32(textBox1.Text);
+            TimeSpan fark = new TimeSpan(gunSayisi, 0, 0, 0);
+            DateTime dt = DateTime.Today + fark;
+            label4.Text = dt.DayOfWeek.ToString();
+        }
+Örnek… İki tarih arasında geçen hafta sonu günlerinin sayısı bulan bir program yazınız…
+   private void button1_Click(object sender, EventArgs e)
+        {
+            DateTime tarih1 = new DateTime(2005,9,15);
+            DateTime tarih2 = new DateTime(2013,12,23);
+            TimeSpan fark = tarih2 - tarih1;
+            long haftasonu = 0;
+            DateTime gecici;
+            for (int i = 0; i <= fark.Days; i++)
+            {
+                gecici = tarih1.AddDays(i);
+                if (gecici.DayOfWeek == DayOfWeek.Saturday || gecici.DayOfWeek == DayOfWeek.Sunday)
+                    haftasonu++;
+            }
+            label1.Text = haftasonu.ToString();
+        }
+KALITIM(Miras)
+Kalıtım yolu ile nesneler birbirinden türetilir. Türeyen sınıflar türediği sınıfın özelliklerini alır. İlaveten bunun üzerine yeni özelliklerde tanımlayabilir. Türetme yolu ile bir nesne kendi özelliklerini yeni nesneye aktarır. Türetme işlemi şu şekilde yapılır…
+///// Türeyen sınıf : Türediği sınıf 
+Şeklinde yapılır. Örneğin bil : mat
+Yani bil sınıfı mat sınıfından türemiştir.
+Bil sınıfı mat sınıfının public ve protected olan özelliklerini devralır. Protected erişim belirleyicisi private gibidir. Tek farkı türeyen sınıflar türediği sınıflarda ki protected olan özelliklere de erişebilir. Normal fonksiyonlarda protected=private tek fark kalıtım yoluyla yapılırken protectedlere erişim olabilir. 
+Örneğin açıklaması… Emlak sınıfının private olan oda ve komisyon özelliklerine diğer sınıflardan erişemeyiz. Ancak protected olan kısmına diğer emlak sınıfından türetilen sınıflardan erişebiliriz. Emlak sınıfının public erişim belirtecine sahip olana ise her yerden erişebiliriz.
+   private void button1_Click(object sender, EventArgs e)
+        {
+         
+        }
+        class emlak
+        {
+            private int  oda;
+            private long komisyon;
+            protected byte kat;
+            public string yeri;
+
+        }
+        class satılıkEv : emlak
+        {
+
+        }
+        class kiralıkEv : emlak
+        {
+
+        }
+        class bilgi
+        {
+
+        }
+
+
+KAYNAK: www.csharpnedir.com

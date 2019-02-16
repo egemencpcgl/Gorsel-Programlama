@@ -1,0 +1,30 @@
+///////
+///
+//      Kullanıcıdan alınan   notların ortalamasını hesaplayan programı yazınız //
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace algoritma3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("1. Sınav Notunuzu Giriniz: ");
+            int sinavBir = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("2. Sınav Notunuzu Giriniz: ");
+            int sinavIki = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("3. Sınav Notunuzu Giriniz: ");
+            int sinavUc = Int32.Parse(Console.ReadLine());
+
+            float toplam = (sinavBir + sinavIki + sinavUc) / 3;
+            Console.WriteLine("+_____________________ ");
+            Console.WriteLine("Ortalamanız = " + toplam);
+            Console.ReadKey();
+
+        }
+    }
+}

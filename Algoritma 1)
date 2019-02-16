@@ -1,0 +1,49 @@
+////////
+///
+//             Cinsiyeti soran, erkek ise askerik durumunu kontrol eden program.
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            baslangic:
+            Console.WriteLine("Cinsiyetinizi giriniz: ");
+            Console.WriteLine("E ? || K ? : ");
+
+            String cinsiyet = Console.ReadLine();
+
+            if (cinsiyet == "E" || cinsiyet == "e")
+            {
+                Console.WriteLine("Yasinizi giriniz: ");
+                int yas = Convert.ToInt32(Console.ReadLine());
+                if (20 <= yas)
+                {
+                    Console.WriteLine("Askerlik durumu aktif.");
+                    goto baslangic;
+                }
+                else if (yas < 20)
+                {
+                    Console.WriteLine("Askerlik durumunuz aktif değil.");
+                    goto baslangic;
+                }
+            }
+            else if (cinsiyet == "K" || cinsiyet == "k")
+            {
+                Console.WriteLine("Askerlik ile yükümlü değilsiniz.");
+                goto baslangic;
+            }
+            else
+            {                
+                Console.WriteLine("Lütfen belirtilen harfler ile giriş yapın;");
+                goto baslangic;
+            }
+        }
+    }
+}

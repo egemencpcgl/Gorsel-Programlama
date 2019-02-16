@@ -1,0 +1,64 @@
+///////
+///
+//   Klavyeden mevsim girilmesi istenerek bu mevsime ait ayları ekranda yazan program  //
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace algoritma2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            baslangic:
+            string[] ilkbahar = {"mart","nisan","mayıs"};
+            string[] yaz = { "haziran", "temmuz", "ağustos" };
+            string[] sonbahar = { "eylül", "ekim", "kasım" };
+            string[] kis = { "aralım", "ocak", "şubat" };
+
+            Console.WriteLine("Aramak istediğiniz mevsimi giriniz.");
+            string mevsim = Console.ReadLine();
+            if (mevsim == "ilkbahar")
+            {
+                for (int i = 0; i <= 2; i++)
+                {
+                    Console.WriteLine(ilkbahar[i]);
+                }
+                Console.ReadKey();  goto baslangic;
+            }
+            else if (mevsim == "yaz")
+            {
+                for (int i = 0; i <= 2; i++)
+                {
+                    Console.WriteLine(yaz[i]);
+                }
+                Console.ReadKey();  goto baslangic;
+            }
+            else if (mevsim == "sonbahar")
+            {
+                for (int i = 0; i <= 2; i++)
+                {
+                    Console.WriteLine(sonbahar[i]);
+                }
+                Console.ReadKey();  goto baslangic;
+            }
+            else if (mevsim == "kis")
+            {
+                for (int i = 0; i <= 2; i++)
+                {
+                    Console.WriteLine(kis[i]);                    
+                }
+                Console.ReadKey();  goto baslangic;
+            }
+            else
+            {
+                Console.WriteLine("Lütfen mevsim giriniz:");
+                goto baslangic;
+            }
+        }
+    }
+}
